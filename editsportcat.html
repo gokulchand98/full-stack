@@ -1,0 +1,48 @@
+{% extends 'home.html' %}
+{% block content %}
+<head>
+  <style>
+.heading {
+    border-bottom: 1px solid #fcab0e;
+    padding-bottom: 9px;
+    position: relative;
+}
+.heading span {
+    background: #9e6600 none repeat scroll 0 0;
+    bottom: -2px;
+    height: 3px;
+    left: 0;
+    position: absolute;
+    width: 75px;
+}   
+ .card {
+        margin: 0 auto; 
+        float: none; 
+        margin-bottom: 10px; 
+ }
+
+</style>
+<div class="container">
+    <div class="card text" style= "width:50rem;">
+    <div class="card-header"style= "background-color: #E8E8E8; color:black;">
+      <h4 class="heading"><strong>Edit </strong> {{sname}}  <span></span></h4>
+      <div class="card-body">
+         {% for each in categoriesList %}
+            <div class="form-group col-md-6">
+            <form action="{{url_for('editSportscategory',category_id=each.sports_id)}}" method="POST">
+              <label>{{each.sports_name}} :</label>
+                <input type="text" class="form-control" id="name" name="category_name" value="{{each.sports_name}}" placeholder="category name" required>
+                <br>
+                <button type ="submit"  class="btn btn-success a-btn-slide-text">
+                  <span class="glyphicon glyphicon-pencil"></span>
+                  <span><strong>Update Category</strong></span>
+              </button>
+            </form>
+            </div>
+          {%endfor%}
+			</div>
+    </div> 
+  </div>
+        
+</div>
+{% endblock %}

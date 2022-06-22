@@ -1,0 +1,68 @@
+
+{%extends "home.html"%}
+{%block content%}
+<head>
+  <style>
+     .heading {
+    border-bottom: 1px solid #fcab0e;
+    padding-bottom: 9px;
+    position: relative;
+   
+}
+.heading span {
+    background: #9e6600 none repeat scroll 0 0;
+    bottom: -2px;
+    height: 3px;
+    left: 0;
+    position: absolute;
+    width: 75px;
+}   
+  </style>
+  </head>
+
+  <div class="container" style="width: 660px;">
+  <div class="border border-dark">
+	<div class="card-group">
+	
+    <div class="card-header"style= "background-color: white; color:black;">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card-block text-center" >
+             <h4 class="heading"><strong>Name : </strong> {{Sname}} <span></span></h4>
+				<div class="list-group">
+						<li class="list-group-item justify-content-between text-black"  style="background-color: #E8E8E8;"><strong>Brand : {{Sbrand}}</strong></li>
+						<li class="list-group-item justify-content-between text-black"  style="background-color: #E8E8E8;"><strong>Price : Rs:{{Sprice}}/-</strong></li>
+					</div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card-img-bottom">
+			<img src="{{Simage}}" class="rounded" width="340px" height="430px">
+          </div>
+        </div>
+      </div>
+    </div>
+	</div>
+  </div>
+  </div>
+  
+  
+{%endblock%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

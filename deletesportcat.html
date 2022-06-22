@@ -1,0 +1,57 @@
+
+{% extends 'home.html' %}
+{% block content %}
+<head>
+<style>
+  .heading {
+    border-bottom: 1px solid #fcab0e;
+    padding-bottom: 9px;
+    position: relative;
+}
+  .heading span {
+    background: #9e6600 none repeat scroll 0 0;
+    bottom: -2px;
+    height: 3px;
+    left: 0;
+    position: absolute;
+    width: 75px;
+}   
+ .card {
+        margin: 0 auto; 
+        float: none; 
+        margin-bottom: 10px; 
+}
+
+</style>
+</head>
+
+<div class="container">
+    <form action="{{url_for('deleteSportCat')}}" method="POST">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+               <div class="card text" style= "width:50rem;">
+                <div class="card-header"style= "background-color: #E8E8E8; color:black;">
+                  <h4 class="heading"><strong>Delete </strong> Category <span></span></h4>
+                  <ul class="list-group list-group-flush">
+                    {% for sport in sports %}  
+                    <li class="list-group-item">
+                          {{sport.sports_name}}
+                          <br>
+                          <label>
+                                        <input type="checkbox" id="{{sport.sports_id}}" name="chbox{{sport.sports_id}}" value="{{sport.sports_id}}"/>   
+                                        <span class="primary"></span>
+                          </label>
+                    </li>
+                      {%endfor%}
+                  <div>
+						          <center><button type="submit" class="btn btn-danger" ><span class="glyphicon glyphicon-trash"></span>Delete Category</button></center>
+                  </div>
+                </ul>
+              </div>
+            </div>
+             
+        </div>
+      </div>
+    </form>
+</div>
+{% endblock %}

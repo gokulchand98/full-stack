@@ -1,0 +1,81 @@
+
+{% extends 'home.html' %}
+
+{% block content %}
+<style>
+.heading {
+    border-bottom: 1px solid #fcab0e;
+    padding-bottom: 9px;
+    position: relative;
+    background: #E8E8E8;
+}
+.heading span {
+    background: #9e6600 none repeat scroll 0 0;
+    bottom: -2px;
+    height: 3px;
+    left: 0;
+    position: absolute;
+    width: 75px;
+}   
+.card {
+        margin: 0 auto; 
+        float: none; 
+        margin-bottom: 10px; 
+}
+
+</style>
+<div class="container">
+    <div class="card text" style= "width:50rem;">
+      <div class="card-header"style= "background-color: #E8E8E8; color:black;">
+        <h4 class="heading"><strong>Edit </strong> {{Sname}} <span></span></h4>
+      
+          <div class="card-body">
+    	     <form method="post" action="{{url_for('editsportitem',categoryid = catid,itemid=Sid)}}">
+    	       <div class="form-group ">
+              <label>NAME :</label>
+              <input type="text" class="form-control" id="name"  name="Sname" value="{{Sname}}" placeholder="Name" required>
+            </div>
+    	      <div class="form-group ">
+              <label>IMAGE :</label>
+              <input type="text" class="form-control" id="image"  name="Simage" value="{{Simage}}" placeholder="Image" required>
+            </div>
+    	      <div class="form-group ">
+              <label>PRICE :</label>
+              <input type="text" class="form-control" id="price"  name="Sprice" value="{{Sprice}}" placeholder="Price" required>
+            </div>
+    	      <div class="form-group ">
+              <label>BRAND :</label>
+              <input type="text" class="form-control" id="brand"  name="Sbrand" value="{{Sbrand}}" placeholder="Sbrand" required>
+            </div>
+            <center><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><span class= "glyphicon glyphicon-pencil"></ span> Edit Item</button></center>
+            <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Click to Confirm</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                            Edit {{Sname}}
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                           <button class="btn btn-success" value="Add Category"><span class= "glyphicon glyphicon-pencil"></span><strong>Edit Item</strong></button>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+ 

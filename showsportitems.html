@@ -1,0 +1,110 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<head>
+	<style>
+	.heading {
+    border-bottom: 1px solid #fcab0e;
+    padding-bottom: 9px;
+    position: relative;
+    background: #E8E8E8;
+}
+.heading span {
+    background: #9e6600 none repeat scroll 0 0;
+    bottom: -2px;
+    height: 3px;
+    left: 0;
+    position: absolute;
+    width: 75px;
+}   
+	</style>
+</head>
+
+{% if not hasRecent%}
+
+	{%if category_id%}
+
+			<div class="card-body" align=center>
+						<a href= "{{url_for('newsportitem',categoryid=category_id)}}" class="btn btn-success a-btn-slide-text">
+							<span class="glyphicon glyphicon-plus"></span>
+							<span><strong>Item</strong></span>
+						</a>
+
+			</div>			
+		{% endif %}
+
+{% endif%}
+
+{% if Items %}
+<div class="container">
+	
+	<div class="row">
+
+
+	{% for each in Items %}	
+	 	<div class="col-sm-4 col-lg-4 col-md-4 py-4">
+			
+				<div class="card" style= "background-color:  #E8E8E8;width: 26rem;">
+
+					<div class="border border-dark">
+					<div class="card-body">
+						 <h4 class="heading"><strong>{{each.item_name}}</strong><span></span></h4>
+					</div>
+						<div class="img-wrap">
+						 <img class="card-img-top" src="{{each.item_image}}" height="150" width="70">
+						
+						<a href="{{url_for('sportitemdetails',category_id=each.sports_id,itemid=each.item_id)}}" class="show-on-hover"><span><center>View Details</center></span></a>
+						
+						</div>
+					<ul class="list-group list-group-flush" align=center>
+				
+						<li class="list-group-item justify-content-between text-black" style="background-color: #F0F0F0;"><strong>Rs:{{each.item_price}}/-</strong></li>
+						<li class="list-group-item justify-content-between text-black" style="background-color: #F0F0F0;"><strong>{{each.item_brand}}</strong></li>
+					<div class="card-body" align=center>
+						<a href="{{url_for('editsportitem',categoryid=each.sports_id,itemid=each.item_id)}}"  class="btn btn-success a-btn-slide-text">
+							<span class="glyphicon glyphicon-pencil"></span>
+							<span><strong>Edit</strong></span>
+						</a>
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{each.sports_id}}{{each.item_id}}"><span class= "glyphicon glyphicon-trash"></span> Delete </button>
+						
+					</div>
+					</ul>
+						
+				          <div class="modal" id="exampleModal{{each.sports_id}}{{each.item_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				            <div class="modal-dialog" role="document">
+				              <div class="modal-content">
+				                <div class="modal-header">
+				                  <h5 class="modal-title" id="exampleModalLabel">Click to Confirm</h5>
+				                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				                    <span aria-hidden="true">&times;</span>
+				                  </button>
+				                </div>
+				                <div class="modal-body">
+				                   Delete {{Sname}}
+				                </div>
+				                <div class="modal-footer">
+				                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				                   <a  href="{{url_for('deletesportitem',categoryid=each.sports_id,itemid=each.item_id)}}" class="btn btn-danger a-btn-slide-text">
+								       		<span class="glyphicon glyphicon-trash"></span>
+								       			<span><strong>Delete</strong></span>
+								      </a>
+				                </div>
+				              </div>
+				            </div>
+				          </div>
+					</div>
+		
+		    	</div>	
+	</div>
+
+	{% endfor %}
+	
+		</div>
+	</div>
+	
+	{% else %}
+{% endif %}
+
+{% endblock %}
+
+

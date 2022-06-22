@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>SportsWear Store</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <meta name="google-signin-client_id" content="488719811894-f6l2rojajk2qhseg3lfvj9hkusrqrvna.apps.googleusercontent.com">
+
+
+
+
+<style>
+
+.navbar-toggle {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+}
+
+.navbar-header {
+  width: 65%;
+  color: black;
+}
+
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  font-style: normal;
+  font-size: 16px;
+}
+
+.navbar {
+  position: relative;
+}
+
+
+
+.navbar-default .navbar-nav>li>a {
+  color: black;
+  font-weight: 400;
+}
+
+
+
+.navbar-default .navbar-nav>li>a:hover {
+  color: #808ba0;
+  font-weight: 300;
+}
+
+#navbar-header {
+  transition: 2s ease-in-out;
+}
+
+.navbar-default {
+  background-color: rgb(255, 160,122 );
+}
+
+
+.navbar {
+  position: relative;
+  border-radius: 0px;
+  border: 0px;
+  height: 9.5em;
+  -webkit-transition: height 300ms ease-in-out;
+  -moz-transition: height 300ms ease-in-out;
+  -o-transition: height 300ms ease-in-out;
+  transition: height 300ms ease-in-out;
+}
+
+.navbar-fixed-top {
+  position: fixed !important;
+}
+
+.navbar-brand {
+  width: 150px;
+  height: 40px;
+}
+
+.nav {
+  text-align: center;
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
+}
+
+.dropdown-menu {
+  background-color: white;
+}
+
+
+</style>
+
+
+
+</style>
+<body>
+ <nav class="navbar navbar- fixed-top navbar-expand-md navbar-default-bg">
+<div class="header" id="navbar-header">
+  <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+          <a class="navbar-brand" style= "font-size: 25px;">
+            SPORTS WEAR STORE
+          </a>
+           
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+      </div>
+      <div>
+        <div class="collapse navbar-collapse" id="js-navbar-collapse">
+          <ul class="nav navbar-nav" id="navbar">
+            <li>
+              <a href="{{url_for('home')}}">HOME</a>
+            </li>
+            <li>
+              <a href="{{url_for('newsportcat')}}">Create New Category</a>
+            </li>
+            <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">choose category</a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      {% for each in mycategories %}
+                    <a href="{{url_for('showcatitems',category_id=each.sports_id)}}">{{each.sports_name}}</a>
+                     {% endfor %}
+                     
+                    </li>
+                    
+                  </ul>
+            </li>
+            <li>
+              <a href="{{url_for('editCat')}}">Edit Category</a>
+            </li>
+            <li>
+              <a href="{{url_for('deleteSportCat')}}">Delete Category</a>
+            </li>
+
+                 {% if 'email' in session %}
+                    <li>
+                    <a class="nav-link"><b>{{session['email']}}</b>
+                   </a></li>
+                   <li>
+                    <a href="{{url_for('logout')}}"><span title="LOGOUT">Logout</span></a>
+                    </li>
+                 {% else %}
+                  <li>
+                    <a href="{{url_for('login')}}"><span title="LOGIN">Login</span></a>
+                   </li>
+             {% endif %}
+ 
+         </ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</nav>
+
+{% with messages = get_flashed_messages() %}
+<div class="container">
+{% for each in messages %}
+<div class="alert alert-primary">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+    {{ each }}
+</div>
+{% endfor %}
+</div>
+{% endwith %}
+<div class="row content">
+     
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
